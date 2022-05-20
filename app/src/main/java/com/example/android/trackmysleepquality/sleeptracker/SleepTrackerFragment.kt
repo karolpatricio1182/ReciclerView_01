@@ -110,7 +110,7 @@ class SleepTrackerFragment : Fragment() {
         binding.sleepList.adapter = adapter//asociando el adaptador con RecyclerView.
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it//Dentro del observador, siempre que obtenga un valor no nulo (para noches), asigne el valor a los datos del adaptador.
+                adapter.submitList(it)//Cuando se llama a este método, ListAdapter compara la nueva lista con la anterior y detecta los elementos que se agregaron, quitaron, movieron o cambiaron.  Luego, ListAdapter actualiza los elementos que muestra RecyclerView.
             }
         })
 //este es el observador de la variable nights
